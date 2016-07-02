@@ -1,0 +1,45 @@
+@charset "utf-8";
+/* banner样式 */
+.banner { position:relative; min-height:55px}
+
+/*天气样式*/
+#weather{ position:absolute; bottom:0; background:url(../images/index_03.png); width:100%; height:45px; color:#fff; padding:5px 0}
+.weathermessage{ line-height:1.1; margin-left:10px;}
+.temperature{ font-size:1.6em}
+.weathercity{ margin-right:10px; background:url(../images/index_07.png) no-repeat right center; line-height:45px; padding-right:25px; font-size:1.4em;}
+
+/*天气选择城市样式*/
+#weathercity{ position:fixed; z-index:11; background:url(../images/bj_03.jpg); right:0; top:0; width:0; overflow:auto;}
+
+/*今日油价样式*/
+#oilprices{ background:#f8f8f8; overflow:hidden; padding:0 10px; margin-top:10px;line-height:40px; height:40px; border-bottom:solid 1px #cdcdcd; border-top:solid 1px #cdcdcd;}
+#oilprices .title,#oilprices div,#oilprices span{ display:inline-block; height:50px; overflow:hidden}
+#oilprices em{ font-style:normal}
+#oilprices .title{ background:#ff9000; color:#fff; font-size:1.1em; padding:0 5px}
+#oilprices .price92,#oilprices .price95{ margin-left:1.2%;}
+#oilprices .oilnum{ color:#ff9000; font-size:23px; font-weight:bold; line-height:30px}
+#oilprices sup{font-size:18px; display:inline-block;}
+#oilprices .price{ font-size:1.1em;}
+#oilprices .price .border{ margin-right:2px}
+#oilprices .price .border font{ border:solid 1px #999; padding:0 2px;}
+
+/*违章列样式*/
+#Illegallist li{ margin-top:10px; background:#f8f8f8; overflow:hidden; padding:10px; border-bottom:solid 1px #cdcdcd; border-top:solid 1px #cdcdcd;}
+#Illegallist li .plate{ font-size:1.3em;}
+#Illegallist li .box{ color:#666; font-size:0.9em;}
+#Illegallist li .green{ color:#8fcb1d; font-size:1.2em} 
+#Illegallist li .yellow{ color:#ff9000; font-size:1.2em}
+#Illegallist li .edit,#Illegallist li .del{ display:inline-block; width:33px; height:33px; margin-left:5px}
+#Illegallist li .edit{ background:url(../images/ico_07.png) no-repeat; background-size:100% auto;}
+#Illegallist li .del{ background:url(../images/ico_09.png) no-repeat; background-size:100% auto;}
+
+/*添加车辆样式*/
+#addvehicle{ margin-top:10px; background:#f8f8f8; overflow:hidden; line-height:40px; text-align:center; border-bottom:solid 1px #cdcdcd; border-top:solid 1px #cdcdcd;}
+#addvehicle a{ display:inline-block; background:url(../images/index_22.png) no-repeat left center; background-size:auto 30px; padding-left:35px}
+
+/*违章说明*/
+#explain{ margin:10px 0 30px 0; padding:0 10px;}
+#explain h1{ font-size:1.2em; color:#8fcb1d; font-weight:normal}
+#explain p{ text-align:justify; margin-bottom:10px;}
+#explain img,#explain video{ max-width:100%;}
+

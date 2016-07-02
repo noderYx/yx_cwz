@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>查违章-车辆编辑</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="format-detection" content="telephone=no" />
+<link href="res/css/style.css" rel="stylesheet" type="text/css">
+<link href="res/css/form.css" rel="stylesheet" type="text/css">
+<script src="res/js/jquery-1.11.2.min.js"></script>
+<script src="res/js/form.js"></script>
+<script src="res/js/date.js"></script>
+</head>
+<body>
+    <input type="hidden" id="vehicleResult" value="<%=vehicleResult%>">
+	<input type="hidden" id="PNResult" value="<%=PNResult%>">
+    <input type="hidden" id="nickname" value="<%=nickname%>">
+    <input type="hidden" id="realname" value="<%=realname%>">
+    <input type="hidden" id="mobile" value="<%=mobile%>">
+ 
+    <section id="form">
+       <div class="box type">
+          <span class="title fl">选择车型</span>
+          <div class="fl border rel">
+             <div class="type_message">选择您爱车的车型</div>
+             <ul class="select">
+               <li>小型汽车</li>
+               <li>大型汽车</li>
+               <li>使馆汽车</li>
+               <li>领馆汽车</li>
+               <li>境外汽车</li>
+             </ul>
+          </div>
+          <div class="fr ico"></div>  
+          <div class="clear"></div>      
+       </div>
+       <div class="box plate">
+          <span class="title fl">车牌号码</span>
+          <div class="fl border" style="width:67%">
+             <div class="fl ico">京</div>
+             <input type="text" class="input fl" value="输入车牌号" default="输入车牌号" onkeyup="this.value=this.value.toUpperCase()" onblur="this.value=this.value.toUpperCase()" maxlength="6" style="width:73%;">
+          </div>            
+          <div class="clear"></div>      
+       </div>
+       <div class="box city">
+          <span class="title fl">查询城市</span>
+         <div class="fl border">(最多选择5个城市)</div>  
+          <div class="fr ico"></div>            
+          <div class="clear"></div>      
+       </div>      
+      <div class="box shelf">
+          <span class="title fl" style="padding-left:19px">车架号</span>
+          <div class="fl border">
+           <input type="text" class="input fl" value="输入完整的车架号" default="输入完整的车架号" maxlength="17" style="width:85%; margin:0" onblur="this.value=this.value.toUpperCase()" onkeyup="this.value=this.value.toUpperCase()">          </div>  
+          <div class="fr ico"></div>            
+          <div class="clear"></div>      
+       </div>
+	   <div class="box engine">
+          <span class="title fl">发动机号</span>
+          <div class="fl border">
+        <input type="text" class="input fl" value="输入完整的发动机号" default="输入完整的发动机号" style="width:85%; margin:0" onkeyup="this.value=this.value.toUpperCase()" onblur="this.value=this.value.toUpperCase()">          </div>  
+          <div class="fr ico"></div>            
+          <div class="clear"></div>      
+       </div> 
+      <p style=" margin: 0 10px; margin-top: 10px; font-size: 1em"><span style="color: #f00 ;">注：</span>请仔细核对您所填的车辆信息，否则查询信息可能为空。</p>
+      <div class="but">
+          <div class="butcenter">
+             <a href="javascript:void()" class="reset fl">返回首页</a>
+             <a href="javascript:void()" class="submit fr">添加查询</a>
+          </div>		  
+       </div> 
+       <p style="height:60px; width:100%;"></p>
+       <iframe  src="../views/footer.html" id="frmfooter" frameborder="no" marginwidth="0" marginheight="0" allowTransparency="true" scrolling="no" border=0 width="100%" height="auto"></iframe>   
+</section>    
+    <!--选择城市弹出盒--> 
+    <div id="city">
+       <!--当前城市--> 
+       <div class="currentcity">
+         当前城市：<span class="city"></span>
+       </div>
+       <!--已选城市--> 
+       <div class="choicecity">
+         已选择城市：<span class="prompt">(最多可选5个城市)</span>
+         <div class="chosentcity">           
+         </div>
+       </div>
+       <!--所有城市--> 
+       <div class="allcity current">
+         <span>所有城市</span>
+         <ul class="allcity_current">                
+         </ul>
+       </div>
+       <!--按钮层--> 
+      <div class="buttonbj"></div>
+       <div class="button">
+          <div class="center">
+            <a href="javascript:void()" class="submit">确定</a>
+            <a href="javascript:void()" class="reset">取消</a>
+          </div>
+       </div>
+    </div>
+    <!--信息提示盒-->
+    <div class="errorboxbj"></div>  
+    <div class="errorbox">
+      <div class="errorbox_message">只能选择<script>document.write(num)</script>个城市</div>
+      <div class="errorbox_button">
+         <a href="javascript:void()" class="submit">确定</a>
+         <a href="javascript:void()" class="reset">取消</a>
+         <a href="javascript:void()" class="determine">确定</a>
+      </div>
+    </div> 
+    <!--选择车牌盒-->
+    <div class="platebox">
+      <div class="platebox_message">
+       <a href="javascript:void()">京</a>
+       <a href="javascript:void()">沪</a>
+       <a href="javascript:void()">浙</a>
+       <a href="javascript:void()">苏</a>
+       <a href="javascript:void()">粤</a>
+       <a href="javascript:void()">晋</a>
+       <a href="javascript:void()">冀</a>
+       <a href="javascript:void()">豫</a>
+       <a href="javascript:void()">川</a>
+       <a href="javascript:void()">渝</a>
+       <a href="javascript:void()">辽</a>
+       <a href="javascript:void()">吉</a>
+       <a href="javascript:void()">黑</a>
+       <a href="javascript:void()">皖</a>
+       <a href="javascript:void()">鄂</a>
+       <a href="javascript:void()">湘</a>
+       <a href="javascript:void()">闽</a>
+	   <a href="javascript:void()">鲁</a>
+	   <a href="javascript:void()">桂</a>
+       <a href="javascript:void()">陕</a>
+       <a href="javascript:void()">甘</a>
+       <a href="javascript:void()">宁</a>
+       <a href="javascript:void()">蒙</a>
+       <a href="javascript:void()">津</a>
+       <a href="javascript:void()">贵</a>
+       <a href="javascript:void()">云</a>
+       <a href="javascript:void()">琼</a>
+       <a href="javascript:void()">青</a>
+       <a href="javascript:void()">新</a>
+       <a href="javascript:void()">藏</a>
+	   <a href="javascript:void()">赣</a>
+       <a href="javascript:void()" class="determine fr">确定</a> 
+       </div>     
+    </div>
+    <!--牌照提示盒-->
+    <div class="licensebox">
+      <div class="licensebox_box">
+        <img src="res/images/u70.png"/>
+      </div>
+    </div>
+    <!--loding显示-->
+    <div class="lodingboxbj"></div>  
+    <div class="loding" style="position:fixed; top:40%; left:13%; z-index:9999; width:100%; display:none">
+      <img src="res/images/6_03.png" alt="" />
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </div>
+	<script type="text/javascript">
+    //设置微信分享信息 
+    var wxShareData = {
+        title: '查违章',
+        desc: '查违章',
+        link: '<%=radio8_web%><%=url_root%>/index?hdid=<%=hdid%>&radioid=<%=radioid%>',
+        imgUrl: '<%=radio8_web%><%=url_root%>/res/images/fenxiang.png'
+    };
+    </script>
+	<% include wxshare%>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>查违章</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="format-detection" content="telephone=no" />
+<link href="res/css/style.css" rel="stylesheet" type="text/css">
+<script src="res/js/jquery-1.11.2.min.js"></script>
+<script src="res/js/jquery.cookie.js"></script>
+</head>
+
+<body>
+    <!--loding显示-->  
+	<input type="hidden" id="openid" value="<%=openid%>"> 
+    <div class="loding" style="position:fixed; top:40%; left:13%; z-index:9999; width:100%;">
+      <img src="res/images/6_03.png" alt="" />
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </div>
+	<div id="box"></div>	
+	<script> 
+	  //扩展jquery获取url参数方法	   
+	  (function ($) {
+		  $.getUrlParam = function (name) {
+			  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			  var r = window.location.search.substr(1).match(reg);
+			  if (r != null) return unescape(r[2]); return null;
+		  }
+	  })(jQuery);	
+	 var openid=$("#openid").val();	
+	 function locationUrl(latitude,longitude){	     		   
+	   if(latitude==""&&longitude=="")
+		{		    
+		 window.location.href="main?hdid="+$.getUrlParam('hdid')+"&radioid="+$.getUrlParam('radioid')+"&openid="+openid+"&area=北京&prov=北京";   
+		}else
+		{ 		  		
+			$.ajax({
+			  type: 'get',
+			  url: 'locationUrl',
+			  dataType: 'json',			 
+			  data: {'latitude':latitude,'longitude':longitude,'radioid':$.getUrlParam('radioid'),'hdid':$.getUrlParam('hdid'),'openid':openid},
+			  success:function(result) {			    
+			    window.location.href="main?hdid="+$.getUrlParam('hdid')+"&radioid="+$.getUrlParam('radioid')+"&openid="+openid+"&area="+result.city+"&prov="+result.province;
+			  },
+			  error: function() {
+				window.location.href="main?hdid="+$.getUrlParam('hdid')+"&radioid="+$.getUrlParam('radioid')+"&openid="+openid+"&area=北京&prov=北京";  
+			  },			 
+			});		
+	  }	
+	 }		
+	</script>    	
+	<% include wxgetlocation%>	
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">    
+  //判断操作系统
+  var u = navigator.userAgent, app = navigator.appVersion;
+  var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器
+  var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+  if(isiOS)//如果苹果系统直接跳转页面
+  {	 
+	  if ($.cookie("area") == undefined || $.cookie("prov") == undefined) {		     
+         window.location.href = "main?hdid=" + $.getUrlParam('hdid') + "&radioid=" + $.getUrlParam('radioid') + "&openid=" + openid + "&area=北京&prov=北京";		
+      } else {
+        window.location.href = "main?hdid=" + $.getUrlParam('hdid') + "&radioid=" + $.getUrlParam('radioid') + "&openid=" + openid + "&area=" + $.cookie("area") + "&prov=" + $.cookie("prov");
+      }
+	  
+  }else//其他系统调用微信方法
+  {
+	  wx.config({
+		debug: false,                         // debug=true时，若调用js api出错，页面会alert出错信息
+		appId: '<%=wxsign.appid %>',          // 必填：签名会使用该appid对应获取的jsapi ticket
+		timestamp: '<%=wxsign.timestamp %>',    // 必填：生成签名的时间戳
+		nonceStr: '<%=wxsign.nonceStr %>',    // 必填：生成签名的随机串
+		signature: '<%=wxsign.signature %>',  // 必填：签名，由jsapi ticket，noncestr，timestamp，url运算得到
+		jsApiList: [
+	   'getLocation',         // 获取地理位置  
+		   ]
+	  });
+	  
+	  wx.ready(function () {
+		  wx.checkJsApi({
+        jsApiList: ['getLocation'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+        success: function (res) {
+          if ($.cookie("area") == undefined || $.cookie("prov") == undefined) {
+            wx.getLocation({
+              type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+              success: function (res) {
+                var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -18   
+                locationUrl(latitude, longitude);
+              },
+              cancel: function (res) {               
+                window.location.href = "main?hdid=" + $.getUrlParam('hdid') + "&radioid=" + $.getUrlParam('radioid') + "&openid=" + openid + "&area=北京&prov=北京";
+              }
+            });
+          } 
+		  else {
+            window.location.href = "main?hdid=" + $.getUrlParam('hdid') + "&radioid=" + $.getUrlParam('radioid') + "&openid=" + openid + "&area=" + $.cookie("area") + "&prov=" + $.cookie("prov");
+          }		  
+        },
+        error: function () {
+          window.location.href = "main?hdid=" + $.getUrlParam('hdid') + "&radioid=" + $.getUrlParam('radioid') + "&openid=" + openid + "&area=北京&prov=北京";
+        }
+      });
+	});
+	
+	 wx.error(function (res) {
+    window.location.href = "main?hdid=" + $.getUrlParam('hdid') + "&radioid=" + $.getUrlParam('radioid') + "&openid=" + openid + "&area=北京&prov=北京";
+  });
+  }  
+ 
+</script>

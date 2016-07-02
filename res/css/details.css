@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*车辆信息编辑样式*/
+#details>.edit{margin-top:10px; background:#f8f8f8; overflow:hidden; padding:10px; border-bottom:solid 1px #cdcdcd; border-top:solid 1px #cdcdcd;}
+#details>.edit .plate{ color:#8fcb1d; font-size:1.2em}
+#details>.edit .title{ color:#999; font-size:0.9em;}
+#details .edit .edit,#details .edit .del{ display:inline-block; width:33px; height:33px; margin-left:5px}
+#details .edit .edit{ background:url(../images/ico_07.png) no-repeat; background-size:100% auto;}
+#details .edit .del{ background:url(../images/ico_09.png) no-repeat; background-size:100% auto;}
+
+/*违章详情样式*/
+.detailed{ margin-top:10px;}
+.detailed_nav{ overflow:hidden}
+.detailed_nav li{ float:left; width:50%; text-align:center; background:#ccc; line-height:40px;}
+.detailed_nav li.current{ background:#8fcb1d; color:#fff;}
+.detailed_message_text{ padding:0 10px; line-height:40px;}
+.detailed_message_text span{ color:#ff9000; font-size:1.1em;}
+
+.detailed_message_all{ background:#f8f8f8; padding:10px; padding-bottom:50px;}
+.detailed_message_all li{ margin-bottom:10px; overflow:hidden}
+.detailed_message_all li .title{ color:#999; padding-right:10px}
+.detailed_message_all li .bj{ background:#8fcb1d; border-radius:5px; color:#fff; padding:3px}
+
+/*返回按钮样式*/
+.button>.center>.back{ display:block; background:#b8900a; color:#7a3700; width:100px; margin:0 auto}

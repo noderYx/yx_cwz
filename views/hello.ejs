@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>微信授权用户信息测试</title>
+    <meta charset="utf-8" />
+    <meta content='width=device-width, initial-scale=1, user-scalable=0' name='viewport' />
+    <script type="text/javascript" src="../../res/jquery-1.8.2.min.js"></script>
+  </head>
+  <body>
+    <p>用户信息授权测试：</p>
+    <p>comopenid: <%=userInfo.comopenid%></p>
+    <p>openid: <%=user.openid%> </p>
+    <p>nickname: <%=user.nickname%></p>
+    <p>headicon: <img src="<%=user.headicon%>" width="60" height="60" /></p>
+	<p>realname: <%=user.realname%></p>
+	<p>mobile:   <%=user.mobile%></p>
+
+
+    <p>点击右上角的微信分享，查看分享的标题文字，介绍文字，图标等是否正常</p>
+
+<script type="text/javascript">
+  var wxShareData = {
+        title: '微信分享测试',
+        desc: '可以发送给朋友，分享到朋友圈，QQ，腾讯微博',
+        link: 'http://demo.open.weixin.qq.com/jssdk/',
+        imgUrl: 'http://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRt8Qia4lv7k3M9J1SKqKCImxJCt7j9rHYicKDI45jRPBxdzdyREWnk0ia0N5TMnMfth7SdxtzMvVgXg/0'
+      };
+</script>
+
+    <% include wxshare %>
+  </body>
+</html>

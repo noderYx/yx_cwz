@@ -1,0 +1,67 @@
+<!-- 错误信息模板页面： 
+  例如显示活动页面时，需要先检查radioid，openid等请求参数是否正常，是否正确获取活动信息等，
+  如果发生错误，调用该页面展示错误信息，详细的错误信息说明 放在 errorMsg 参数中传入
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>抱歉，出错了</title>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1, user-scalable=0' name='viewport'>
+<style type='text/css'>
+  body{line-height:1.6;font-family:'Helvetica Neue',Helvetica,'Microsoft YaHei',Arial,Tahoma,sans-serif;}
+  
+  body,h1,h2,h3,h4{margin:0;}
+  a img{border:0;}
+  body{
+  background-color: #e1e0de;
+  }
+  .icon {
+  display: inline-block;
+  vertical-align: middle;
+  }
+  .page_msg {
+  padding-left: 23px;
+  padding-right: 23px;
+  font-size: 16px;
+  text-align: left;
+  }
+  .page_msg .inner {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  }
+  .page_msg .msg_icon_wrp {
+  display: block;
+  padding-bottom: 22px;
+  }
+  .page_msg .msg_content h4 {
+    text-align: center;
+    font-weight: 400;
+    color: #000000;
+  }
+  .page_msg .msg_content p {
+    color: #90908E;
+  }
+</style>
+</head>
+<body>
+<div class='page_msg'>
+<div class='inner'>
+<div align='center'>
+<p><img height='150px' src='http://radio2.unitrue.com.cn/resources/images/icon_smile.png' alt="info_icon" /></p>
+</div>
+<div class='msg_content'>
+<h4>温馨提示：<%=errorMsg %></h4>
+</div>
+<div align='center'>
+<p>
+<a href='http://mp.weixin.qq.com/mp/appmsg/show?__biz=MjM5MDU0NTE2MQ==&appmsgid=10000039&itemidx=1&sign=ea9f743280ec13de99cbea87164fb969#wechat_redirect' target='_blank'>
+<img height='60px' src='http://radio2.unitrue.com.cn/resources/images/poweredby2.png' alt="powered by fmRADIO8" />
+</a>
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

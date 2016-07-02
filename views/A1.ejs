@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>查违章</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="format-detection" content="telephone=no" />
+<link href="res/css/style.css" rel="stylesheet" type="text/css">
+<link href="res/css/index.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="res/css/flexslider.css" />
+<link type="text/css" rel="stylesheet" href="res/css/jquery.mmenu.all.css" />
+<script src="res/js/jquery-1.11.2.min.js"></script>
+<script src="res/js/jquery.cookie.js"></script>
+<script src="res/js/jquery.mmenu.min.all.js"></script>
+<script src="res/js/jquery.flexslider.js"></script>
+<script src="res/js/o-script.js"></script>
+<script src="res/js/index.js"></script>
+<script src="res/js/indexdate.js"></script>
+  <script src="res/js/errVehicle.js"></script>
+  
+</head>
+<body>
+  <input type="hidden" id="isfan" value="<%=user.isfan%>">
+  <input type="hidden" id="ismember" value="<%=user.ismember%>">
+  <input type="hidden" id="day_weather" value="<%=weatherResult.day_weather%>">
+  <input type="hidden" id="PNResult" value="<%=PNResult%>">
+  <input type="hidden" id="oilPriceResult" value="<%=oilPriceResult.p97jiao%>">
+  <input type="hidden" id="errVehicle" value="<%=errVehicle%>">
+  <header>
+    <div class="banner"> 
+    <!-- 图片播放功能 -->     
+     <section id="section">
+		<div class="bannerPane">
+			<section class="slider">
+				<div class="flexslider">
+					<ul class="slides">
+					    <li><a href="javascript:;"></a><img src="res/images/chengniubanner_02.jpg" /></a></li>	
+						<li><a href="javascript:;"></a><img src="res/images/weizhangbanner_02.jpg" /></a></li>										
+					</ul>
+				</div>
+			</section>
+		</div>
+      </section>    
+      <!--天气显示功能-->
+      <article id="weather">
+         <div class="weathermessage fl">
+           <h1 class="temperature"><em id="nighttemperature"><%=weatherResult.night_air_temperature%></em>°～<em id="daytemperature"><%=weatherResult.day_air_temperature%></em>°</h1>
+           <span class="weatherstate"><%=weatherResult.day_weather%></span>  <span class="vehicle" id="iscarwash">适宜洗车</span>
+         </div>
+         <div class="weathercity fr"><span id="area"></span><span style="display:none" id="prov"></span></div>
+      </article>
+     </div> 
+    </header>   
+    <section>
+       <!--油价显示功能-->
+      <div id="oilprices">
+         <h1 class="title fl">今日油价</h1>
+         <div class="price92 fl">
+           <span class="oilnum"><em id="p93">93</em><sup>#</sup></span>
+           <div class="price"><span class="border"><font id="p93yuan"><%=oilPriceResult.p93yuan%></font></span><span>.</span><span class="border"><font id="p93jiao"><%=oilPriceResult.p93jiao%></font></span><span class="border"><font id="p93fen"><%=oilPriceResult.p93fen%></font></span></div>
+         </div>
+         <div class="price95 fl">
+           <span class="oilnum"><em id="p97">97</em><sup>#</sup></span>
+           <div class="price"><span class="border"><font id="p97yuan"><%=oilPriceResult.p97yuan%></font></span><span>.</span><span class="border"><font id="p97jiao"><%=oilPriceResult.p97jiao%></font></span><span class="border"><font id="p97fen"><%=oilPriceResult.p97fen%></font></span></div>
+         </div>
+      </div>
+      <!--违章列表功能-->
+      <div id="Illegallist">
+         <ul>		   
+           <%if(ViolateByOpenId!=""){for(var i=0;i<ViolateByOpenId.length;i++){%>
+		    <li>
+             <div>
+               <div>
+                 <div class="fr">
+                  <a href="updateVehicle?hdid=<%=hdid%>&radioid=<%=radioid%>&openid=<%=openid%>&OldVehicleNum=<%=ViolateByOpenId[i].VehicleNum%>" class="edit"></a>
+                  <a href="javascript:void()" vehiclenum="<%=ViolateByOpenId[i].VehicleNum%>" class="del"></a>
+                 </div>
+                 <a href="violateOneDetail?hdid=<%=hdid%>&radioid=<%=radioid%>&openid=<%=openid%>&VehicleNum=<%=ViolateByOpenId[i].VehicleNum%>" class="plate"><%=ViolateByOpenId[i].VehicleNum%> &gt;</a>
+               </div>
+               <div class="box">共<span class="green"><%=ViolateByOpenId[i].total%></span>次违章记录</div>
+               <div class="box"><span class="yellow"><%=ViolateByOpenId[i].Nostatus%></span>未处理违章  扣<span class="green"><%=ViolateByOpenId[i].Sumscore%></span>分  罚<span class="green"><%=ViolateByOpenId[i].Summoney%></span>元</div>
+             </div>             
+           </li>
+		   <%}}%>
+         </ul>
+      </div>
+      <!--添加车辆功能-->
+      <div id="addvehicle">
+        <a href="#">添加车辆信息</a>
+		<div id="box"></div>
+      </div>
+	  <script>
+	    $(function(){			  
+	     $("#addvehicle>a").attr("href","addVehicle?hdid=<%=hdid%>&radioid=<%=radioid%>&openid=<%=openid%>&OldVehicleNum=&area="+$("#area").text()+"&prov="+$("#prov").text())
+		})	    
+	  </script>
+      <!--违章说明-->
+      <div id="explain">
+         <h1>查违章说明</h1>
+         <p>1、汽车号牌说明：黄色牌照的车辆为大型汽车，蓝色牌照的汽车为小型汽车。</p>
+         <p>2、异地违法信息转地需要1-2天时间，如车辆在异地违法，请在异地公告2天后查询。</p>   
+         <p>3、所有信息以交警支队查询信息为准。</p>        
+      </div>
+      <p style="height:60px; width:100%;"></p>
+      <iframe src="../views/footer.html" id="frmfooter" frameborder="no" marginwidth="0" marginheight="0" allowTransparency="true" scrolling="no" border=0 width="100%" height="auto"></iframe> 
+    </section>    
+    <!--天气选择城市弹出盒--> 
+    <div id="weathercity">
+       <!--当前城市--> 
+       <div class="currentcity">
+         当前城市：<span class="city">上海</span>
+       </div>
+       <!--已选城市--> 
+       <div class="choicecity">
+         已选择城市：<span class="prompt">(最多可选1个城市)</span>
+         <div class="chosentcity">           
+         </div>
+       </div>
+       <!--所有城市--> 
+       <div class="allcity current">
+         <span>所有城市</span>
+         <ul class="allcity_current">                
+         </ul>
+       </div>
+       <!--按钮层--> 
+      <div class="buttonbj"></div>
+       <div class="button">
+          <div class="center">
+            <a href="javascript:void()" class="submit">确定</a>
+            <a href="javascript:void()" class="reset">取消</a>
+          </div>
+       </div>
+     </div>
+    <!--信息提示盒-->
+    <div class="errorboxbj"></div>  
+    <div class="errorbox">
+      <div class="errorbox_message"></div>
+      <div class="errorbox_button">
+         <a href="javascript:void()" class="submit">确定</a>
+         <a href="javascript:void()" class="reset">取消</a>
+         <a href="javascript:void()" class="determine">确定</a>
+      </div>
+    </div> 
+	<!--关注公众账号内容-->
+	<div class="attention">
+	  <img src="res/images/jt.png">
+	  <p>如未关注公众号，请点击箭头所示的图标，并在下方弹出层中选择“查看公众号”并关注此公众号。</p>
+	  <p>进入公众号输入关键词“查违章”，将出现该活动介绍页面，点击进入活动页面参加活动。</p>
+	  <a href="javascript:void()">关闭</div>
+	</div>
+	<!--loding显示-->
+    <div class="lodingboxbj"></div>  
+    <div class="loding" style="position:fixed; top:40%; left:13%; z-index:9999; width:100%; display:none">
+      <img src="res/images/6_03.png" alt="" />
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </div>
+	<script type="text/javascript">
+    //设置微信分享信息 
+    var wxShareData = {
+        title: '查违章',
+        desc: '查违章',
+        link: '<%=radio8_web%><%=url_root%>/index?hdid=<%=hdid%>&radioid=<%=radioid%>',
+        imgUrl: '<%=radio8_web%><%=url_root%>/res/images/fenxiang.png'
+    };
+    </script>
+	<% include wxshare%>
+</body>
+</html>

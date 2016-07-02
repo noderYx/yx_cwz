@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+html,body{ height:100%}
+#city{ position:fixed; z-index:11; background:url(../images/bj_03.jpg); right:0; top:0; width:0; overflow:auto;}
+
+#form .box{margin-top:10px; background:#f8f8f8; padding:10px; border-bottom:solid 1px #cdcdcd; border-top:solid 1px #cdcdcd; line-height:30px;}
+#form .box .input{ background:none; border:none; margin-left:10px; color:#ccc; font-size:1em; line-height:30px}
+#form .box .input.current{ color:#1f1f1f;}
+#form .box .title{ color:#8fcb1d; font-size:1.2em}
+#form .box .border{ border-left:solid 1px #a0a0a0; margin-left:10px; padding-left:10px; color:#ccc; font-size:1em;}
+#form .hide{ display:none}
+#form .ico{ background:url(../images/index_18.png) no-repeat right center; width:24px; height:30px;}
+
+#form .type{ position:relative}
+#form .select{ position:absolute; top:40px; background:#f8f8f8; width:155px; padding:10px; color:#1f1f1f; border:solid 1px #ccc; display:none; z-index:9999;}
+#form .select li{ border-bottom:dashed 1px #ccc; line-height:40px}
+#form .select li:active{ background:#ccc;}
+
+#form .plate .ico{ color:#1f1f1f; padding-right:20px}
+
+#form .city .border{ width:57%; color:#1f1f1f;}
+#form .city .ico{ background-image:url(../images/index_16.png)}
+
+#form .but{ margin-top:10px;}
+#form .but .butcenter{ width:80%; margin:0 auto;}
+#form .but .reset{ background:#d9a800; color:#7a3700; line-height:40px; padding:0 30px; border-radius:5px}
+#form .but .submit{ background:#7aad19; color:#fff; line-height:40px; padding:0 30px; border-radius:5px}
+
+#form .engine .ico{ background-image:url(../images/ico_1_03.png);}
+#form .shelf .ico{ background-image:url(../images/ico_1_03.png);}
+
+/*选择车牌样式*/
+.platebox{ position:fixed; width:100%; bottom:0; background:#f8f8f8; display:none; z-index:9999;}
+.platebox_message{ padding:10px; line-height:1;}
+.platebox_message a{border:solid 1px #96ce2c; background:#fff; padding:10px; border-radius:5px; margin-bottom:10px; display:inline-block;}
+.platebox_message a.current{ background:#7aad19; color:#fff;}
+.platebox_message a.determine{ background:#7aad19; width:80px; color:#fff; text-align:center; border:none;}
+
+/*驾照图片提示样式*/
+.licensebox{ position:fixed; top:0; left:0; width:100%; z-index:9999; display:none}
+.licensebox_box{ display:table-cell; text-align:center; vertical-align:middle}
+.licensebox img{ width:85%; vertical-align:middle;}
+
